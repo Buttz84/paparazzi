@@ -1,0 +1,36 @@
+<!DOCTYPE module SYSTEM "module.dtd">
+
+<module name="ftgs">
+  <doc>
+    <description>
+      stabilization module for fixedwing
+    </description>
+
+    <section name="Repiove">
+      <define name="A" value="1.0" description="unica variabile"/> 
+    </section>
+  </doc>
+
+  <settings name="PD_up">
+    <dl_settings>
+      <dl_settings name="PD_down">
+       <dl_settings NAME="Unica">
+          <dl_setting MAX="10.0" MIN="0.0" STEP="1.0" VAR="a" shortname="a_a" param="A"/> 
+       </dl_settings>
+      </dl_settings>
+    </dl_settings>
+  </settings>
+
+  <header>
+    <file name="ftgs.h"/>
+  </header>
+
+  <init fun="fts_init()"/>
+
+  <makefile firmware="fixedwing">
+    <!--<define name="A" value="3.0"/>-->
+    <file name="ftgs.c"/>
+  </makefile>
+
+</module>
+
