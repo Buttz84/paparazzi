@@ -26,6 +26,7 @@
 #ifndef FTGS_H
 #define FTGS_H
 
+#include <inttypes.h>
 #include "std.h"
 #include "paparazzi.h"
 #include "generated/airframe.h"
@@ -79,12 +80,25 @@ extern float POT;
 // control laws variables
 extern int a;
 extern float repiove;
+extern float vBx, vBy, vBz;
+extern pprz_t h_ctl_aileron_setpoint;
+extern pprz_t h_ctl_rudder_setpoint;
+extern pprz_t h_ctl_elevator_setpoint;
+extern pprz_t v_ctl_throttle_setpoint;
 
 extern float eth_last, evx_last, ephi_last,epsi_last; 
 
-extern void fts_init();
-extern void longitudinal(void);
-void lateral(void)
+extern bool h_ctl_disabled;
+extern float k_th,k_vx;
+extern float eth, des_th;
+
+extern void fts_init(void);
+extern void activate_ftgs_external_roll(void);
+extern void activate_ftgs_external_pitch(void);
+extern void deactivate_ftgs(void);
+extern void ftgs_module_loop(void);
+extern void longitudinal_ftgs(void);
+extern void lateral_ftgs(void);
 
 #endif
 

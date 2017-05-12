@@ -19,11 +19,11 @@
     <define name="LOITER_TRIM"/>
     <define name="WIND_INFO"/>
     <define name="USE_AIRSPEED"/>
-    <define name="USE_BARO_ETS"/>
+    <!--define name="USE_BARO_ETS"/-->
 
 
 
-	<module name="ftgs"/>
+    <module name="ftgs"/>
     <module name="radio_control" type="ppm"/>
     <module name="telemetry"     type="transparent"/>
     <module name="control"/>
@@ -33,14 +33,15 @@
     <module name="ahrs"          type="int_cmpl_quat"/>
     <module name="ins" type="alt_float"/>
    
+   
     
 
     <module name="airspeed_ets">
       <configure name="AIRSPEED_ETS_I2C_DEV" value="i2c1"/>
     </module>
-    <module name="baro_ets">
+    <!--module name="baro_ets">
       <configure name="BARO_ETS_I2C_DEV" value="i2c1"/>
-    </module>
+    </module-->
     <module name="air_data"/>
     <module name="geo_mag"/>
     <module name="gps" type="ubx_ucenter"/>

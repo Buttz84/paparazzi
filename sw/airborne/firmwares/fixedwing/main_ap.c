@@ -39,6 +39,7 @@
 #include "mcu_periph/sys_time.h"
 #include "inter_mcu.h"
 #include "link_mcu.h"
+#include "modules/ftgs/ftgs.h"
 
 // Sensors
 #if USE_GPS
@@ -574,6 +575,12 @@ void attitude_loop(void)
   }
 
   h_ctl_attitude_loop(); /* Set  h_ctl_aileron_setpoint & h_ctl_elevator_setpoint */
+  
+  //ftgs_module_loop(); /* grande prova*/
+  //activate_ftgs_external_pitch();
+  activate_ftgs_external_roll();
+  
+  
   v_ctl_throttle_slew();
   PPRZ_MUTEX_LOCK(ap_state_mtx);
   ap_state->commands[COMMAND_THROTTLE] = v_ctl_throttle_slewed;
@@ -582,6 +589,13 @@ void attitude_loop(void)
 #if H_CTL_YAW_LOOP && defined COMMAND_YAW
   ap_state->commands[COMMAND_YAW] = h_ctl_rudder_setpoint;
 #endif
+/*
+#if Aldo && defined COMMAND_YAW
+  ap_state->commands[COMMAND_YAW] = h_ctl_rudder_setpoint;
+#endif
+*/
+
+
 #if H_CTL_CL_LOOP && defined COMMAND_CL
   ap_state->commands[COMMAND_CL] = h_ctl_flaps_setpoint;
 #endif

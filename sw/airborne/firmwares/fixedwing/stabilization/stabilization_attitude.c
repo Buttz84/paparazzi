@@ -98,8 +98,10 @@ float h_ctl_course_slew_increment;
 #endif
 
 
-inline static void h_ctl_roll_loop(void);
-inline static void h_ctl_pitch_loop(void);
+//inline static void h_ctl_roll_loop(void);
+//inline static void h_ctl_pitch_loop(void); // original definition
+void h_ctl_pitch_loop(void);
+void h_ctl_roll_loop(void);
 #ifdef H_CTL_RATE_LOOP
 static inline void h_ctl_roll_rate_loop(void);
 #endif
@@ -333,7 +335,8 @@ void h_ctl_attitude_loop(void)
 
 
 #ifdef H_CTL_ROLL_ATTITUDE_GAIN
-inline static void h_ctl_roll_loop(void)
+//inline static void h_ctl_roll_loop(void) original definition
+void h_ctl_roll_loop(void)
 {
   float err = stateGetNedToBodyEulers_f()->phi - h_ctl_roll_setpoint;
   struct FloatRates *body_rate = stateGetBodyRates_f();
@@ -352,7 +355,8 @@ inline static void h_ctl_roll_loop(void)
 #else // H_CTL_ROLL_ATTITUDE_GAIN
 
 /** Computes h_ctl_aileron_setpoint from h_ctl_roll_setpoint */
-inline static void h_ctl_roll_loop(void)
+//inline static void h_ctl_roll_loop(void)
+void h_ctl_roll_loop(void)
 {
   float err = stateGetNedToBodyEulers_f()->phi - h_ctl_roll_setpoint;
   float cmd = h_ctl_roll_pgain * err
@@ -376,7 +380,6 @@ inline static void h_ctl_roll_loop(void)
 }
 
 #ifdef H_CTL_RATE_LOOP
-
 static inline void h_ctl_roll_rate_loop()
 {
   float err = stateGetBodyRates_f()->p - h_ctl_roll_rate_setpoint;
@@ -442,7 +445,8 @@ inline static float loiter(void)
 #endif
 
 
-inline static void h_ctl_pitch_loop(void)
+//inline static void h_ctl_pitch_loop(void) // original definition
+void h_ctl_pitch_loop(void)
 {
   static float last_err;
   struct FloatEulers *att = stateGetNedToBodyEulers_f();

@@ -2227,6 +2227,10 @@
 
    <message name="FTGS" id="249">
     <field name="repiove" type="float" unit="none"/>
+    <field name="k_th" type="float" unit="none"/>
+    <field name="k_vx" type="float" unit="none"/>
+    <field name="e_th" type="float" unit="none"/>
+    <field name="des_th" type="float" unit="none"/>
   </message>
 
   <message name="INDI_G" id="250">
@@ -2255,7 +2259,7 @@
     <field name="gnssFixOK"           type="uint8" values="NONE|3D"/>
   </message>
 
-  <!-- 249 is free -->
+
 
   <!-- 250 is free -->
 
